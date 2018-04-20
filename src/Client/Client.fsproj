@@ -7,7 +7,12 @@
         <Compile Include="..\Shared\Persons.fs" />
         <Compile Include="..\Shared\Route.fs" />
 
-        <Compile Include="Persons.fs" />
+        <Compile Include="Persons\Types.fs" />
+        <Compile Include="Persons\Server.fs" />
+        <Compile Include="Persons\State.fs" />
+        <Compile Include="Persons\View.fs" />
+
+        <Compile Include="MainView.fs" />
 
         <Compile Include="Program.fs" />
     </ItemGroup>

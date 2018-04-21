@@ -16,7 +16,11 @@ let init () : Model * Cmd<Msg> =
 
 let update (msg: Msg) (model: Person list option) : Model * Cmd<Msg> =
     let model' =
-        match model,  msg with
+        match model, msg with
+        | Some persons, Delete p -> 
+            Some (
+                persons
+                |> List.filter ((<>) p))
         | None, Init (Ok x) -> Some x
         | _ -> None
     model', Cmd.none

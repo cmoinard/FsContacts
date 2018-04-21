@@ -6,3 +6,4 @@ type Model = Person list option
 
 type Msg =
 | Init of Result<Person list, exn>
+| Delete of Person

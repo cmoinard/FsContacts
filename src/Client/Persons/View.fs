@@ -1,6 +1,7 @@
 module Persons.View
 
 open Shared
+open Types
 
 open Fable.Helpers.React
 
@@ -12,20 +13,22 @@ let personHeader =
           th [] [ str "First name" ]
           th [] [ str "Last name" ]
           th [] [ str "Address" ]
+          th [] []
         ] 
 
-let personLine p =
+let personLine dispatch p =
     tr  []
         [
             td [] [ str p.firstName ]
             td [] [ str p.lastName ]
             td [] [ str (Address.toString p.address) ]
+            td [] [ Button.a [ Button.OnClick (fun _ -> dispatch (Delete p)) ] [ str "delete"] ]
         ]
 
-let personsTable persons =
+let personsTable dispatch persons =
     let lines =
         persons
-        |> List.map personLine
+        |> List.map (personLine dispatch)
 
     Table.table [ Table.IsHoverable ]
         [ thead [] [ personHeader ]
@@ -35,4 +38,4 @@ let personsTable persons =
 let view model dispatch =
     match model with
     | None -> str "Loading persons…"
-    | Some persons -> personsTable persons 
+    | Some persons -> personsTable dispatch persons 

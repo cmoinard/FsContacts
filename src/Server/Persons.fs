@@ -45,7 +45,7 @@ let repository  =
                     p.LastName <- f.Name.LastName()
                     p.Address <- addressGenerator.Generate() )
 
-    let persons = 
+    let mutable persons = 
         personGenerator.Generate(10)
         |> List.ofSeq
         |> List.map mapToPerson
@@ -55,5 +55,14 @@ let repository  =
             async {
                 do! Async.Sleep(500)
                 return persons
+            }
+
+        delete = fun p ->
+            async {
+                do! Async.Sleep(500)
+                
+                persons <-
+                    persons
+                    |> List.filter ((<>) p)
             }
     }

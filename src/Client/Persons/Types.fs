@@ -2,8 +2,18 @@ module Persons.Types
 
 open Shared
 
-type Model = Person list option
+type PersonWithState = {
+    person: Person
+    isBusy: bool
+}
+
+type Model = PersonWithState list option
+
+type LoadableResult<'TLoading, 'TLoaded> =
+| Loading of 'TLoading
+| Loaded of 'TLoaded
+| Error of exn
 
 type Msg =
-| Init of Result<Person list, exn>
-| Delete of Person
+| Delete of LoadableResult<Person, Person>
+| LoadPersons of LoadableResult<unit, Person list>

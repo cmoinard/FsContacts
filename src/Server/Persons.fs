@@ -31,7 +31,7 @@ let private mapToPerson (p: PersonDto) =
 
 let repository  =
     let addressGenerator =
-        Faker<AddressDto>()
+        Faker<AddressDto>("fr")
             .Rules( fun f a -> 
                     a.Number <- f.Random.Number(1, 99) 
                     a.Street <- f.Address.StreetName()
@@ -39,7 +39,7 @@ let repository  =
                     a.City <- f.Address.City())
 
     let personGenerator =
-        Faker<PersonDto>()
+        Faker<PersonDto>("fr")
             .Rules( fun f p -> 
                     p.FirstName <- f.Name.FirstName() 
                     p.LastName <- f.Name.LastName()

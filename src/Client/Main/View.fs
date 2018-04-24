@@ -1,4 +1,6 @@
-module MainView
+module Main.View
+
+open Types
 
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
@@ -77,3 +79,9 @@ let view content =
                     [ li [ ]
                         [ a [ ]
                             [ str "And this at the bottom" ] ] ] ] ] ] ]
+
+
+
+let root model dispatch =
+    let personView = Persons.View.view model.persons (PersonsMsg >> dispatch)
+    view personView

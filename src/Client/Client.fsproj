@@ -12,7 +12,9 @@
         <Compile Include="Persons\State.fs" />
         <Compile Include="Persons\View.fs" />
 
-        <Compile Include="MainView.fs" />
+        <Compile Include="Main\Types.fs" />
+        <Compile Include="Main\State.fs" />
+        <Compile Include="Main\View.fs" />
 
         <Compile Include="Program.fs" />
     </ItemGroup>

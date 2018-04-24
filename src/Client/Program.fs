@@ -1,6 +1,5 @@
 module Program
 
-open Persons
 open Elmish
 open Elmish.React
 
@@ -9,11 +8,7 @@ open Elmish.Debug
 open Elmish.HMR
 #endif
 
-let view model dispatch =
-    let personView = View.view model dispatch
-    MainView.view personView    
-
-Program.mkProgram State.init State.update view
+Program.mkProgram Main.State.init Main.State.update Main.View.root
 #if DEBUG
 |> Program.withConsoleTrace
 |> Program.withHMR

@@ -7,7 +7,7 @@ open Fable.Helpers.React
 
 open Fulma.Elements
 
-let personHeader =
+let private personHeader =
     tr  []
         [
           th [] [ str "First name" ]
@@ -16,7 +16,7 @@ let personHeader =
           th [] []
         ] 
 
-let personLine dispatch ps =
+let private personLine dispatch ps =
     let p = ps.person
     tr  []
         [
@@ -32,7 +32,7 @@ let personLine dispatch ps =
                     [ str "delete"] ]
         ]
 
-let personsTable dispatch persons =
+let private personsTable dispatch persons =
     let lines =
         persons
         |> List.map (personLine dispatch)
@@ -42,7 +42,17 @@ let personsTable dispatch persons =
           tbody [] lines
         ]
 
+let private fullView persons dispatch =
+    div []
+        [
+            Button.a
+                [ Button.OnClick (fun _ -> dispatch GoToPersonCreation) ]
+                [ str "Create" ]
+
+            personsTable dispatch persons
+        ]
+
 let view model dispatch =
     match model with
     | None -> str "Loading persons…"
-    | Some persons -> personsTable dispatch persons 
+    | Some persons -> fullView persons dispatch

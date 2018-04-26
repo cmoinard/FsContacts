@@ -2,6 +2,7 @@ module Persons.State
 
 open Types
 open Elmish
+open AppNavigation
 
 let inline private cmdOfAsyncToLoadable task arg toMsg =
     Cmd.ofAsync
@@ -42,6 +43,8 @@ let update (msg: Msg) (model: Model) : Model * Cmd<Msg> =
                 Server.api.delete
                 p
                 Delete
+        | GoToPersonCreation ->
+            newUrl EditionPage
         | _ ->
             Cmd.none
 

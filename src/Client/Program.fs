@@ -2,13 +2,20 @@ module Program
 
 open Elmish
 open Elmish.React
+open Elmish.Browser.Navigation
+open Elmish.Browser.UrlParser
+open AppNavigation
+
+open Main.State
+open Main.View
 
 #if DEBUG
 open Elmish.Debug
 open Elmish.HMR
 #endif
 
-Program.mkProgram Main.State.init Main.State.update Main.View.root
+Program.mkProgram init update root
+|> Program.toNavigable (parseHash pageParser) urlUpdate
 #if DEBUG
 |> Program.withConsoleTrace
 |> Program.withHMR

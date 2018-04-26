@@ -1,6 +1,7 @@
 module Main.View
 
 open Types
+open AppNavigation
 
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
@@ -83,5 +84,9 @@ let view content =
 
 
 let root model dispatch =
-    let personView = Persons.View.view model.persons (PersonsMsg >> dispatch)
-    view personView
+    let subView = 
+        match model.page with
+        | PersonsPage -> Persons.View.view model.persons (PersonsMsg >> dispatch)
+        | EditionPage -> Edition.View.root ()
+
+    view subView

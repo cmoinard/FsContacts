@@ -1,6 +1,9 @@
 module Main.Types
 
+open AppNavigation
+
 type Model = {
+    page: Page
     persons: Persons.Types.Model
 }
 

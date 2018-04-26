@@ -6,11 +6,15 @@
     <ItemGroup>
         <Compile Include="..\Shared\Persons.fs" />
         <Compile Include="..\Shared\Route.fs" />
+        
+        <Compile Include="AppNavigation.fs" />
 
         <Compile Include="Persons\Types.fs" />
         <Compile Include="Persons\Server.fs" />
         <Compile Include="Persons\State.fs" />
         <Compile Include="Persons\View.fs" />
+        
+        <Compile Include="Edition\View.fs" />
 
         <Compile Include="Main\Types.fs" />
         <Compile Include="Main\State.fs" />

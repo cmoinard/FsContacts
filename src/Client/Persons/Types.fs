@@ -15,5 +15,6 @@ type LoadableResult<'TLoading, 'TLoaded> =
 | Error of exn
 
 type Msg =
-| Delete of LoadableResult<Person, Person>
 | LoadPersons of LoadableResult<unit, Person list>
+| Delete of LoadableResult<Person, Person>
+| GoToPersonCreation

@@ -64,12 +64,8 @@ let view content =
       Hero.body [ ]
         [ Container.container 
             [ Container.CustomClass Alignment.HasTextCentered ]
-            [ Columns.columns [ Columns.IsVCentered ]
+            [ Columns.columns [ Columns.IsCentered ]
                 [ Column.column 
-                    [ Column.Width (Column.All, Column.Is5) ]
-                    [ Image.image [ Image.Is4by3 ]
-                        [ img [ Src "http://placehold.it/800x600" ] ] ]
-                  Column.column 
                    [ Column.Width (Column.All, Column.Is5)
                      Column.Offset (Column.All, Column.Is1) ]
                    [ containerBox content ] ] ] ]

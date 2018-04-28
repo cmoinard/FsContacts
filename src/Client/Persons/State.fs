@@ -36,6 +36,8 @@ let update (msg: Msg) (model: Model) : Model * Cmd<Msg> =
 
     let model' =
         match msg, model with
+        | LoadPersons (Loading _), _ ->
+            None
         | LoadPersons (Loaded persons), _ ->
             Some (
                 persons

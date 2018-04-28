@@ -9,7 +9,7 @@ open Fulma.Elements
 
 let private personHeader =
     tr  []
-        [
+        [ th [] [ str "Id" ]
           th [] [ str "First name" ]
           th [] [ str "Last name" ]
           th [] [ str "Address" ]
@@ -19,18 +19,15 @@ let private personHeader =
 let private personLine dispatch ps =
     let p = ps.person
     tr  []
-        [
-            td [] [ str p.firstName ]
-            td [] [ str p.lastName ]
-            td [] [ str (Address.toString p.address) ]
-            td [] [ 
-                Button.a 
-                    [
-                        Button.IsLoading ps.isBusy
-                        Button.OnClick (fun _ -> dispatch (Delete (Loading p)))
-                    ]
-                    [ str "delete"] ]
-        ]
+        [ td [] [ p.id |> string |> str ]
+          td [] [ str p.firstName ]
+          td [] [ str p.lastName ]
+          td [] [ str (Address.toString p.address) ]
+          td [] [ 
+            Button.a 
+                [ Button.IsLoading ps.isBusy
+                  Button.OnClick (fun _ -> dispatch (Delete (Loading p))) ]
+                [ str "delete"] ] ]
 
 let private personsTable dispatch persons =
     let lines =

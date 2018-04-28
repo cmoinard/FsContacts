@@ -11,6 +11,7 @@ type private AddressDto() =
     member val City = "" with get, set
     
 type private PersonDto() = 
+  member val Id = 1 with get, set
   member val FirstName = "" with get, set
   member val LastName = "" with get, set
   member val Address = AddressDto() with get,set
@@ -22,8 +23,10 @@ let private mapToAddress (a: AddressDto) =
         postalCode = a.PostalCode
         city = a.City
     }
-let private mapToPerson (p: PersonDto) =
+
+let private mapToPerson id (p: PersonDto) =
     {
+        id = id
         firstName = p.FirstName
         lastName = p.LastName
         address = p.Address |> mapToAddress
@@ -40,15 +43,20 @@ let repository  =
 
     let personGenerator =
         Faker<PersonDto>("fr")
-            .Rules( fun f p -> 
+            .Rules( fun f p ->
                     p.FirstName <- f.Name.FirstName() 
                     p.LastName <- f.Name.LastName()
                     p.Address <- addressGenerator.Generate() )
 
-    let mutable persons = 
+    let mutable persons =
         personGenerator.Generate(10)
         |> List.ofSeq
-        |> List.map mapToPerson
+        |> List.mapi (fun i p -> mapToPerson (i + 1) p)
+
+    let mutable lastId = 
+        persons
+        |> List.map (fun p -> p.id)
+        |> List.max
 
     {
         getAll = fun () ->
@@ -60,9 +68,12 @@ let repository  =
         create = fun () ->
             async {
                 do! Async.Sleep(500)
+
+                lastId <- lastId + 1
+
                 let newPerson =
                     personGenerator.Generate()
-                    |> mapToPerson
+                    |> mapToPerson (lastId)
 
                 persons <-
                     newPerson::persons

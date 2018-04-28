@@ -15,6 +15,7 @@ module Address =
         + " " + address.city
 
 type Person = {
+    id: int
     firstName: string
     lastName: string
     address: Address

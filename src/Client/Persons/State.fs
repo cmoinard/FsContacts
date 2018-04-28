@@ -4,20 +4,6 @@ open Types
 open Elmish
 open AppNavigation
 
-let inline private cmdOfAsyncToLoadable task arg toMsg =
-    Cmd.ofAsync
-        task
-        arg
-        (Loaded >> toMsg)
-        (Error >> toMsg)
-
-let inline private cmdOfAsyncToLoadableWithParameter task arg toMsg =
-    Cmd.ofAsync
-        task
-        arg
-        (fun _ -> Loaded arg |> toMsg)
-        (Error >> toMsg)
-
 let init () : Model * Cmd<Msg> =
     let model = None
     let cmd =
@@ -34,12 +20,12 @@ let update (msg: Msg) (model: Model) : Model * Cmd<Msg> =
     let cmd =
         match msg with
         | LoadPersons (Loading _) -> 
-            cmdOfAsyncToLoadable
+            CmdExt.ofAsyncToLoadable
                 Server.api.getAll
                 ()
                 LoadPersons
         | Delete (Loading p) ->
-            cmdOfAsyncToLoadableWithParameter
+            CmdExt.ofAsyncToLoadableWithParameter
                 Server.api.delete
                 p
                 Delete

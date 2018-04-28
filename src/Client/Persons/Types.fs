@@ -1,6 +1,7 @@
 module Persons.Types
 
 open Shared
+open Types
 
 type PersonWithState = {
     person: Person
@@ -8,11 +9,6 @@ type PersonWithState = {
 }
 
 type Model = PersonWithState list option
-
-type LoadableResult<'TLoading, 'TLoaded> =
-| Loading of 'TLoading
-| Loaded of 'TLoaded
-| Error of exn
 
 type Msg =
 | LoadPersons of LoadableResult<unit, Person list>

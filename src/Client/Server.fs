@@ -1,4 +1,4 @@
-module Persons.Server
+module Server
 
 open Shared
 open Fable.Remoting.Client

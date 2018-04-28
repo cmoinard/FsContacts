@@ -1,6 +1,19 @@
 module Edition.View
 
+open Types
+
 open Fable.Helpers.React
 
-let root () =
-    str "Edition"
+open Fulma.Elements
+
+let root (model: Model) dispatch =
+    div []
+        [
+            Button.a
+                [ Button.OnClick (fun _ -> dispatch GoBackToPersons)]
+                [ str "Cancel" ]
+            Button.a
+                [ Button.IsLoading model.isBusy
+                  Button.OnClick (fun _ -> dispatch (Save (Loading ()))) ]
+                [ str "Save" ]
+        ]

@@ -8,12 +8,16 @@
         <Compile Include="..\Shared\Route.fs" />
         
         <Compile Include="AppNavigation.fs" />
+        <Compile Include="Types.fs" />
+        <Compile Include="CmdExt.fs" />
+        <Compile Include="Server.fs" />
 
         <Compile Include="Persons\Types.fs" />
-        <Compile Include="Persons\Server.fs" />
         <Compile Include="Persons\State.fs" />
         <Compile Include="Persons\View.fs" />
         
+        <Compile Include="Edition\Types.fs" />
+        <Compile Include="Edition\State.fs" />
         <Compile Include="Edition\View.fs" />
 
         <Compile Include="Main\Types.fs" />

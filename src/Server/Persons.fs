@@ -57,6 +57,17 @@ let repository  =
                 return persons
             }
 
+        create = fun () ->
+            async {
+                do! Async.Sleep(500)
+                let newPerson =
+                    personGenerator.Generate()
+                    |> mapToPerson
+
+                persons <-
+                    newPerson::persons
+            }
+
         delete = fun p ->
             async {
                 do! Async.Sleep(500)

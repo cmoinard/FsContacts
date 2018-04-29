@@ -65,15 +65,20 @@ let repository  =
                 return persons
             }
 
-        create = fun () ->
+        create = fun p ->
             async {
                 do! Async.Sleep(500)
 
                 lastId <- lastId + 1
 
-                let newPerson =
-                    personGenerator.Generate()
-                    |> mapToPerson (lastId)
+                let newPerson = {
+                    id = lastId
+                    firstName = p.firstName
+                    lastName = p.lastName
+                    address =
+                        addressGenerator.Generate()
+                        |> mapToAddress
+                }
 
                 persons <-
                     newPerson::persons

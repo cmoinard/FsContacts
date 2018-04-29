@@ -5,20 +5,27 @@ open AppNavigation
 open Elmish
 
 let init () =
-    { isBusy = false
-      hasError = false }, Cmd.none
+    let fields = Fields.init ()
+    { saving = false
+      canSave = Fields.canSave fields
+      fields = fields
+    }, Cmd.none
 
 let update msg model =
     match msg with
     | GoBackToPersons ->
         model, newUrl PersonsPage
-    | Save (Loading _) ->
-        { model with isBusy = true },
-        CmdExt.ofAsyncToLoadable
-            Server.api.create
-                ()
+    | Save l ->
+        match l with
+        | Loading p ->
+            { model with saving = true },
+            CmdExt.ofAsyncToLoadable
+                Server.api.create
+                p
                 Save
-    | Save (Loaded _) ->
-        { model with isBusy = false }, newUrl PersonsPage
-    | Save (Error _) ->
-        { isBusy = false; hasError = true }, Cmd.none
+        | _ ->
+            { model with saving = false }, newUrl PersonsPage
+    | FirstNameChanged n ->
+        Model.setFirstName n model, Cmd.none
+    | LastNameChanged n ->
+        Model.setLastName n model, Cmd.none

@@ -8,6 +8,7 @@
         <Compile Include="..\Shared\Route.fs" />
         
         <Compile Include="AppNavigation.fs" />
+        <Compile Include="ValidationState.fs" />
         <Compile Include="Types.fs" />
         <Compile Include="CmdExt.fs" />
         <Compile Include="Server.fs" />
@@ -16,6 +17,7 @@
         <Compile Include="Persons\State.fs" />
         <Compile Include="Persons\View.fs" />
         
+        <Compile Include="Edition\Validations.fs" />
         <Compile Include="Edition\Types.fs" />
         <Compile Include="Edition\State.fs" />
         <Compile Include="Edition\View.fs" />

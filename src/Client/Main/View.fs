@@ -7,12 +7,8 @@ open Fable.Helpers.React
 open Fable.Helpers.React.Props
 
 open Fulma
-open Fulma.Layouts
-open Fulma.Elements
-open Fulma.Components
-
 open Fulma.BulmaClasses.Bulma.Properties
-open Fulma.Extra.FontAwesome
+open Fulma.FontAwesome
 
 let navBrand =
   Navbar.Brand.div [ ] 
@@ -46,8 +42,8 @@ let navMenu =
 
 let containerBox content =
     Box.box' [ ]
-        [ Form.Field.div [ Form.Field.IsGrouped ] 
-            [ Form.Control.p [ Form.Control.CustomClass "is-expanded"] 
+        [ Field.div [ Field.IsGrouped ] 
+            [ Control.p [ Control.CustomClass "is-expanded"] 
                 [ content ]
             ]
         ]

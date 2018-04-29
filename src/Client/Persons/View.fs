@@ -5,7 +5,7 @@ open Types
 
 open Fable.Helpers.React
 
-open Fulma.Elements
+open Fulma
 
 let private personHeader =
     tr  []

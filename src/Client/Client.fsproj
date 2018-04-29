@@ -18,6 +18,8 @@
         <Compile Include="Persons\View.fs" />
         
         <Compile Include="Edition\Validations.fs" />
+        <Compile Include="Edition\Fields.fs" />
+        <Compile Include="Edition\Model.fs" />
         <Compile Include="Edition\Types.fs" />
         <Compile Include="Edition\State.fs" />
         <Compile Include="Edition\View.fs" />

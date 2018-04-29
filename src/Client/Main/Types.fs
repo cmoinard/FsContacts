@@ -5,7 +5,7 @@ open AppNavigation
 type Model = {
     page: Page
     persons: Persons.Types.Model
-    edition: Edition.Types.Model
+    edition: Edition.Model.Model
 }
 
 type Msg =

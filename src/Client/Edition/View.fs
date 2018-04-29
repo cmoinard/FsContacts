@@ -1,6 +1,7 @@
 module Edition.View
 
 open Types
+open Model
 open Shared
 
 open ValidationState
@@ -44,11 +45,13 @@ let textWithValidation validationValue onChange =
           message ]
 
 let root (model: Model) dispatch =
-    let dummyPerson = {
-        firstName = "John"
-        lastName = "Doe"
-    }
-
+    let save () =
+        let dispatchSave = Loading >> Save >> dispatch        
+        dispatchSave {
+            firstName = model.fields.firstName.value
+            lastName = model.fields.lastName.value
+        }
+        
     form []
         [ Field.div []
             [ Label.label [] [ str "Name" ] 
@@ -76,5 +79,5 @@ let root (model: Model) dispatch =
                       Button.IsLoading model.saving
                       Button.Disabled (model.canSave |> not)
                       Button.Color IsPrimary
-                      Button.OnClick (fun _ -> dispatch (Save (Loading dummyPerson))) ]
+                      Button.OnClick (fun _ -> save ()) ]
                     [ str "Save" ] ] ] ]

@@ -3,6 +3,7 @@ module Edition.State
 open Types
 open AppNavigation
 open Elmish
+open Model
 
 let init () =
     let fields = Fields.init ()
@@ -23,6 +24,10 @@ let update msg model =
                 Server.api.create
                 p
                 Save
+        | Loaded _ ->
+            { model with
+                saving = false
+                fields = Fields.init () }, newUrl PersonsPage
         | _ ->
             { model with saving = false }, newUrl PersonsPage
     | FirstNameChanged n ->

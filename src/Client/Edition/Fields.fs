@@ -2,21 +2,24 @@ module Edition.Fields
 
 open ValidationState
 open Validations
+open AddressFields
 
 type Fields = {
     firstName: ValidatedValue<string>
     lastName: ValidatedValue<string>
+    address: AddressFields
 }
 
-let private getAllValidatedValues fields =
+let getAllValidatedStates fields =
     seq {
         yield fields.firstName.state
         yield fields.lastName.state
+        yield! AddressFields.getAllValidatedStates fields.address
     }
 
 let canSave fields =
     fields
-    |> getAllValidatedValues
+    |> getAllValidatedStates
     |> Seq.forall ((=) Validated)
 
 let setFirstName firstName =
@@ -32,4 +35,5 @@ let setLastName lastName =
 let init () =
     { firstName = setFirstName ""
       lastName = setLastName ""
+      address = AddressFields.init ()
     }

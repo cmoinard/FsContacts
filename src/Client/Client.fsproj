@@ -1,34 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
-    </PropertyGroup>
-    <ItemGroup>
-        <Compile Include="..\Shared\Persons.fs" />
-        <Compile Include="..\Shared\Route.fs" />
-        
-        <Compile Include="AppNavigation.fs" />
-        <Compile Include="ValidationState.fs" />
-        <Compile Include="Types.fs" />
-        <Compile Include="CmdExt.fs" />
-        <Compile Include="Server.fs" />
-
-        <Compile Include="Persons\Types.fs" />
-        <Compile Include="Persons\State.fs" />
-        <Compile Include="Persons\View.fs" />
-        
-        <Compile Include="Edition\Validations.fs" />
-        <Compile Include="Edition\Fields.fs" />
-        <Compile Include="Edition\Model.fs" />
-        <Compile Include="Edition\Types.fs" />
-        <Compile Include="Edition\State.fs" />
-        <Compile Include="Edition\View.fs" />
-
-        <Compile Include="Main\Types.fs" />
-        <Compile Include="Main\State.fs" />
-        <Compile Include="Main\View.fs" />
-
-        <Compile Include="Program.fs" />
-    </ItemGroup>
-    <Import Project="..\..\.paket\Paket.Restore.targets" />
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../Shared/Persons.fs" />
+    <Compile Include="../Shared/Route.fs" />
+    <Compile Include="AppNavigation.fs" />
+    <Compile Include="ValidationState.fs" />
+    <Compile Include="Types.fs" />
+    <Compile Include="CmdExt.fs" />
+    <Compile Include="Server.fs" />
+    <Compile Include="Persons/Types.fs" />
+    <Compile Include="Persons/State.fs" />
+    <Compile Include="Persons/View.fs" />
+    <Compile Include="Edition/Validations.fs" />
+    <Compile Include="Edition/AddressFields.fs" />
+    <Compile Include="Edition/Fields.fs" />
+    <Compile Include="Edition/Model.fs" />
+    <Compile Include="Edition/Types.fs" />
+    <Compile Include="Edition/View.fs" />
+    <Compile Include="Edition/State.fs" />
+    <Compile Include="Main/Types.fs" />
+    <Compile Include="Main/State.fs" />
+    <Compile Include="Main/View.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

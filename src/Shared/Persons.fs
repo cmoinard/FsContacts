@@ -24,7 +24,7 @@ type Person = {
 type PersonForEdition = {
     firstName: string
     lastName: string
-    // address: Address
+    address: Address
 }
 
 type PersonRepository = {

@@ -75,9 +75,7 @@ let repository  =
                     id = lastId
                     firstName = p.firstName
                     lastName = p.lastName
-                    address =
-                        addressGenerator.Generate()
-                        |> mapToAddress
+                    address = p.address
                 }
 
                 persons <-

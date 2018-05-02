@@ -27,7 +27,10 @@ let private validationMessage validationValue =
     let color = validationColor validationValue
     match validationValue.state with
     | Validated -> div [] []
-    | Errors err -> Help.help [ Help.Color color ] [ str err ]
+    | Errors err ->
+        Help.help
+            [ Help.Color color ]
+            (err |> List.map str)
 
 let textWithValidation validationValue onChange =
     let color = validationColor validationValue

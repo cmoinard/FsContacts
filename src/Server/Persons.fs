@@ -82,6 +82,27 @@ let repository  =
                     newPerson::persons
             }
 
+        update = fun p id ->
+            async {
+                do! Async.Sleep(500)
+
+                let editedPerson = {
+                    id = id
+                    firstName = p.firstName
+                    lastName = p.lastName
+                    address = p.address
+                }
+
+                let edit pToChange p =
+                    if p.id = pToChange.id
+                    then pToChange
+                    else p
+                    
+                persons <-
+                    persons
+                    |> List.map (edit editedPerson)
+            }
+
         delete = fun p ->
             async {
                 do! Async.Sleep(500)

@@ -30,7 +30,7 @@ let update (msg: Msg) (model: Model) : Model * Cmd<Msg> =
                 p
                 Delete
         | GoToPersonCreation ->
-            newUrl EditionPage
+            goToCreationPage ()
         | _ ->
             Cmd.none
 

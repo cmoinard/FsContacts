@@ -5,31 +5,22 @@ open Elmish.Browser.UrlParser
  
 type Page = 
 | PersonsPage 
-| EditionPage
+| CreationPage
  
 let private editionUrlName = "edition" 
 let private personsUrlName = "persons" 
  
-let private toUrlName = 
-    function 
-    | PersonsPage -> personsUrlName 
-    | EditionPage -> editionUrlName 
- 
-let private toHash page = 
-    "#" + (toUrlName page) 
- 
 let pageParser: Parser<Page->Page,Page> = 
     oneOf [ 
-        map PersonsPage (s personsUrlName) 
-        map EditionPage (s editionUrlName) 
-    ] 
- 
-let newUrl page = 
-    page 
-    |> toHash 
-    |> Navigation.newUrl 
- 
-let modifyUrl page = 
-    page 
-    |> toHash 
-    |> Navigation.modifyUrl
+        map PersonsPage (s personsUrlName)
+        map CreationPage (s editionUrlName)
+    ]
+
+let goToPersonsPage () =
+    Navigation.newUrl <| "#" + personsUrlName
+
+let goToCreationPage () =
+    Navigation.newUrl <| "#" + editionUrlName
+
+let goToEditionPage (id: int) =
+    Navigation.newUrl <| "#" + editionUrlName + "/" + string id

@@ -23,9 +23,9 @@ let private updateWhenSave l model =
     | Loaded _ ->
         { model with
             saving = false
-            fields = Fields.init () }, newUrl PersonsPage
+            fields = Fields.init () }, goToPersonsPage ()
     | _ ->
-        { model with saving = false }, newUrl PersonsPage
+        { model with saving = false }, goToPersonsPage ()
 
 let updateWhenAddressChanged msg model =
     match msg with
@@ -41,7 +41,7 @@ let updateWhenAddressChanged msg model =
 let update msg model =
     match msg with
     | GoBackToPersons ->
-        model, newUrl PersonsPage
+        model, goToPersonsPage ()
     | Save l ->
         updateWhenSave l model
     | FirstNameChanged n ->

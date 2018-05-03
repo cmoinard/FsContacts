@@ -31,4 +31,5 @@ type PersonRepository = {
     getAll: unit -> Async<List<Person>>
     delete: Person -> Async<unit>
     create: PersonForEdition -> Async<unit>
+    update: PersonForEdition -> int -> Async<unit>
 }

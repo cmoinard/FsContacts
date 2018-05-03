@@ -14,6 +14,7 @@ let private personHeader =
           th [] [ str "Last name" ]
           th [] [ str "Address" ]
           th [] []
+          th [] []
         ] 
 
 let private personLine dispatch ps =
@@ -23,6 +24,10 @@ let private personLine dispatch ps =
           td [] [ str p.firstName ]
           td [] [ str p.lastName ]
           td [] [ str (Address.toString p.address) ]
+          td [] [ 
+            Button.a 
+                [ Button.OnClick (fun _ -> dispatch (GoToPersonEdition p.id)) ]
+                [ str "edit"] ]
           td [] [ 
             Button.a 
                 [ Button.IsLoading ps.isBusy

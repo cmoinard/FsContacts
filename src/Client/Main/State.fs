@@ -9,7 +9,7 @@ let urlUpdate (result: Option<Page>) (model: Model) =
     match result with
     | None ->
         console.error("Error parsing url")
-        model, model.page |> modifyUrl
+        model, goToPersonsPage ()
     | Some page ->
         let cmd =
             match page with

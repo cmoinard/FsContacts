@@ -79,6 +79,6 @@ let root model dispatch =
     let subView = 
         match model.page with
         | PersonsPage -> Persons.View.view model.persons (PersonsMsg >> dispatch)
-        | CreationPage -> Edition.View.root model.edition (EditionMsg >> dispatch)
+        | _ -> Edition.View.root model.edition (EditionMsg >> dispatch)
 
     view subView

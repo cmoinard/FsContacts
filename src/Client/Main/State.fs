@@ -10,12 +10,25 @@ let urlUpdate (result: Option<Page>) (model: Model) =
     | None ->
         console.error("Error parsing url")
         model, goToPersonsPage ()
+        
     | Some page ->
+        let model' =
+            match page, model.persons with
+            | EditionPage id, Some persons ->
+                let personToEdit =
+                    persons
+                    |> List.map (fun ps -> ps.person)
+                    |> List.find (fun p -> p.id = id)
+                let eModel = Edition.Model.initFromPerson personToEdit
+                { model with edition = eModel }
+            | _ -> model
+
         let cmd =
             match page with
             | PersonsPage -> Cmd.ofMsg (PersonsMsg (Persons.Types.LoadPersons (Loading ())))
             | _ -> Cmd.none
-        { model with page = page }, cmd
+
+        { model' with page = page }, cmd
 
 let init page =
     let (pModel, pCmd) = Persons.State.init ()

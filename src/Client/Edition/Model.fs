@@ -1,5 +1,6 @@
 module Edition.Model
 
+open Shared
 open Fields
 open Edition.AddressFields
 
@@ -7,6 +8,7 @@ type Model = {
     saving: bool
     canSave: bool
     fields: Fields
+    id: int option
 }
 
 let private updateFieldsWith fields model =
@@ -55,3 +57,22 @@ let setCity city model =
     |> updateAddressFieldsWith {
         model.fields.address with
             city = AddressFields.setCity city }
+
+let init () =
+    let fields = Fields.init ()
+    { saving = false
+      canSave = Fields.canSave fields
+      fields = fields
+      id = None
+    }
+
+let initFromPerson (p:Person) =
+    let model = init ()
+
+    { model with id = Some p.id }
+    |> setFirstName p.firstName
+    |> setLastName p.lastName
+    |> setNumber (Some p.address.number)
+    |> setStreet p.address.street
+    |> setPostalCode p.address.postalCode
+    |> setCity p.address.city

@@ -82,7 +82,7 @@ let repository  =
                     newPerson::persons
             }
 
-        update = fun p id ->
+        update = fun id p ->
             async {
                 do! Async.Sleep(500)
 

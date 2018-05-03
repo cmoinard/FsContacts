@@ -4,7 +4,8 @@ open Elmish.Browser.Navigation
 open Elmish.Browser.UrlParser 
  
 type Page = 
-| PersonsPage 
+| PersonsPage
+| EditionPage of int
 | CreationPage
  
 let private editionUrlName = "edition" 
@@ -13,6 +14,7 @@ let private personsUrlName = "persons"
 let pageParser: Parser<Page->Page,Page> = 
     oneOf [ 
         map PersonsPage (s personsUrlName)
+        map EditionPage (s editionUrlName </> i32)
         map CreationPage (s editionUrlName)
     ]
 

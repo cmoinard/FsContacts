@@ -6,28 +6,30 @@ open Elmish
 open Model
 
 let init () =
-    let fields = Fields.init ()
-    { saving = false
-      canSave = Fields.canSave fields
-      fields = fields
-    }, Cmd.none
+    Model.init (), Cmd.none
 
 let private updateWhenSave l model =
     match l with
     | Loading p ->
-        { model with saving = true },
-        CmdExt.ofAsyncToLoadable
-            Server.api.create
-            p
-            Save
+        let save =
+            match model.id with
+            | None -> Server.api.create
+            | Some id -> Server.api.update id
+        
+        let model' = { model with saving = true }
+        let cmd = CmdExt.ofAsyncToLoadable save p Save
+
+        model', cmd
+
     | Loaded _ ->
         { model with
             saving = false
             fields = Fields.init () }, goToPersonsPage ()
+            
     | _ ->
         { model with saving = false }, goToPersonsPage ()
 
-let updateWhenAddressChanged msg model =
+let private updateWhenAddressChanged msg model =
     match msg with
     | NumberChanged n ->
         Model.setNumber n model, Cmd.none

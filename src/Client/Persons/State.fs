@@ -31,6 +31,8 @@ let update (msg: Msg) (model: Model) : Model * Cmd<Msg> =
                 Delete
         | GoToPersonCreation ->
             goToCreationPage ()
+        | GoToPersonEdition id ->
+            goToEditionPage id
         | _ ->
             Cmd.none
 

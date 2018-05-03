@@ -1,4 +1,4 @@
-module Server.Persons
+module Server.RandomInMemoryPersons
 
 open Shared
 

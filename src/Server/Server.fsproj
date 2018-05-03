@@ -8,7 +8,8 @@
         <Compile Include="..\Shared\Persons.fs" />
         <Compile Include="..\Shared\Route.fs" />
 
-        <Compile Include="Persons.fs" />
+        <Compile Include="RandomInMemoryPersons.fs" />
+        <Compile Include="LiteDbPersons.fs" />        
         
         <Compile Include="Program.fs" />
     </ItemGroup>

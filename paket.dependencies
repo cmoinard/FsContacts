@@ -6,6 +6,7 @@ group Server
   nuget Saturn
   nuget Fable.Remoting.Giraffe ~> 2.6
   nuget Bogus
+  nuget LiteDB.FSharp
 
   clitool Microsoft.DotNet.Watcher.Tools
 

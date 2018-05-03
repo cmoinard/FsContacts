@@ -15,7 +15,7 @@ let browserRouter = scope {
 }
 
 let personsWebApp =
-    remoting Server.Persons.repository {
+    remoting Server.LiteDbPersons.repository {
         use_route_builder Route.builder
     }
 

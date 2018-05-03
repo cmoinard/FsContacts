@@ -4,6 +4,8 @@ group Server
   Saturn
 
   Bogus
+  
+  LiteDB.FSharp
 
   Fable.Remoting.Giraffe
 

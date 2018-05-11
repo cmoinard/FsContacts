@@ -43,7 +43,7 @@ let update (msg: Msg) (model: Model) : Model * Cmd<Msg> =
         | LoadPersons (Loaded persons), _ ->
             Some (
                 persons
-                |> List.sortBy (fun p -> p.id)
+                |> List.sortByDescending (fun p -> p.id)
                 |> List.map toNormal)
         | Delete (Loading personToDelete), Some persons ->
             Some (

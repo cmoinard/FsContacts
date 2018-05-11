@@ -21,7 +21,8 @@ let urlUpdate (result: Option<Page>) (model: Model) =
                     |> List.find (fun p -> p.id = id)
                 let eModel = Edition.Model.initFromPerson personToEdit
                 { model with edition = eModel }
-            | _ -> model
+            | _ ->
+                { model with edition = Edition.Model.init () }
 
         let cmd =
             match page with
